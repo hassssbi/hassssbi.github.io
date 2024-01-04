@@ -1,83 +1,83 @@
-document.getElementById('task-duedate').valueAsDate = new Date();
+document.addEventListener('DOMContentLoaded', function () {
+    const taskForm = document.getElementById('task-form');
+    const taskList = document.getElementById('task-list');
 
-function addTask(event) {
-    event.preventDefault();
+    taskForm.addEventListener('submit', addTask);
 
-    const title = document.getElementById('task-title').value;
-    const description = document.getElementById('task-description').value;
-    const dueDate = document.getElementById('task-duedate').value;
-    const priority = document.getElementById('task-priority').value;
+    function addTask(e) {
+    e.preventDefault();
+    const taskDetails = getTaskDetailsFromForm();
 
-    if (!title || !description || !dueDate || !priority) {
-        alert('Please fill in all the required fields.');
-        return;
+    if (taskDetails) {
+        const taskElement = createTaskElement(taskDetails);
+        taskList.appendChild(taskElement);
+        taskForm.reset();
+    }
     }
 
-    const taskTable = document.getElementById('tasks');
-    const newRow = document.createElement('tr');
+    function getTaskDetailsFromForm() {
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const dueDate = document.getElementById('due-date').value;
+    const priority = document.getElementById('priority').value;
 
-    newRow.innerHTML = `
-        <td>${taskTable.rows.length}</td>
-        <td>${title}</td>
-        <td style="display:none">${description}</td>
-        <td>${dueDate}</td>
-        <td>${priority}</td>
-        <td>Not Done</td>
-        <td>
-            <button class="view" onclick="viewTask(this)">View</button>
-            <button class="edit" onclick="editTask(this)">Edit</button>
-            <button class="delete" onclick="deleteTask(this)">Delete</button>
-        </td>
+    // Simple form validation
+    if (!title || !description || !dueDate || !priority) {
+        alert('Please fill in all fields');
+        return null;
+    }
+
+    return { title, description, dueDate, priority };
+    }
+
+    function createTaskElement(taskDetails) {
+    const taskElement = document.createElement('div');
+    taskElement.classList.add('task');
+
+    const taskContent = `
+        <h3>${taskDetails.title}</h3>
+        <p>${taskDetails.description}</p>
+        <p><strong>Due Date:</strong> ${taskDetails.dueDate}</p>
+        <p><strong>Priority:</strong> ${taskDetails.priority}</p>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+        <button class="complete-btn">Complete</button>
     `;
 
-    taskTable.appendChild(newRow);
-    clearForm();
-}
-function viewTask(button) {
-    const taskRow = button.closest('tr');
-    const taskCells = taskRow.cells;
+    taskElement.innerHTML = taskContent;
 
-    // Extract task details from the table cells
-    const taskDetails = {
-        title: taskCells[1].textContent,
-        description: taskCells[2].textContent,
-        dueDate: taskCells[3].textContent,
-        priority: taskCells[4].textContent,
-        status: taskCells[5].textContent
-    };
+    // Event listeners for edit, delete, and complete buttons
+    const editBtn = taskElement.querySelector('.edit-btn');
+    const deleteBtn = taskElement.querySelector('.delete-btn');
+    const completeBtn = taskElement.querySelector('.complete-btn');
 
-    // Implement view task logic, e.g., display details in a modal
-    console.log('View Task:', taskDetails);
-}
+    editBtn.addEventListener('click', () => editTask(taskElement, taskDetails));
+    deleteBtn.addEventListener('click', () => deleteTask(taskElement));
+    completeBtn.addEventListener('click', () => completeTask(taskElement));
 
-function editTask(button) {
-    const taskRow = button.closest('tr');
-    const taskCells = taskRow.cells;
+    return taskElement;
+    }
 
-    // Extract task details from the table cells
-    const taskDetails = {
-        title: taskCells[1].textContent,
-        description: taskCells[2].textContent,
-        dueDate: taskCells[3].textContent,
-        priority: taskCells[4].textContent,
-        status: taskCells[5].textContent
-    };
+    function editTask(taskElement, taskDetails) {
+    // Implement the logic to edit task details
+    // You can use prompt or create a modal for editing
+    }
 
-    // Implement edit task logic, e.g., populate form with task details
-    console.log('Edit Task:', taskDetails);
-}
+    function deleteTask(taskElement) {
+    taskElement.remove();
+    }
 
-function deleteTask(button) {
-    const taskRow = button.closest('tr');
-    taskRow.remove();
-}
+    function completeTask(taskElement) {
+    taskElement.classList.toggle('completed');
+    }
 
-function clearForm() {
-    // Get the form element
-    const form = document.querySelector('.task-form');
+    // Function to change the app title
+    function changeAppTitle(newTitle) {
+    appTitle.textContent = newTitle;
+    }
 
-    // Reset the form to its initial state
-    form.reset();
-    document.getElementById('task-duedate').valueAsDate = new Date();
-}
-
+    // Function to change app title from UI element
+    function changeTitleFromUI(newTitle) {
+    changeAppTitle(newTitle);
+    }
+});
