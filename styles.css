@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #007bff;
+    text-align: center;
+    padding: 1em;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.container div {
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+.form {
+    flex: 1;
+    margin: .5em;
+}
+
+.task-list {
+    flex: 1;
+    margin: .5em;
+}
+
+.row {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: .25em;
+    display: flex;
+    flex-direction: column;
+}
+
+.row .label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.row input,
+.row textarea,
+.row select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.row textarea {
+    resize: none;
+}
+
+.row input[type=submit] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: inherit;
+}
+
+.row input[type=reset] {
+    color: black;
+    cursor: pointer;
+    width: inherit;
+}
+
+.row.foot {
+    text-align: center;
+}
+
+.row input[type=submit]:hover {
+    opacity: 0.9;
+}
+
+.footer {
+    color: white;
+    background-color: #333333;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+}
+
+.w3-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.w3-striped tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.w3-border {
+    border: 1px solid #ccc !important;
+}
+
+.w3-table td,
+.w3-table th {
+    padding: 10px;
+    text-align: left;
+}
+
+.w3-table th:first-child,
+.w3-table td:first-child {
+    padding-left: 16px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .row input,
+    .row textarea,
+    .row select {
+        margin-bottom: 15px;
+    }
+}
+
+.list-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.list-table tr td {
+    padding: 10px;
+    text-overflow: clip;
+    
+}
+
+.list-table tr td button {
+    margin-right: 4px;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+    border: none;
+}
+
+.list-table tr td button:hover {
+    opacity: .9;
+
+}
+
+.list-table tr td button.view {
+    background-color: #007bff;
+    color: white;
+}
+
+.list-table tr td button.edit {
+    background-color: #ffc107;
+    color: black;
+}
+
+.list-table tr td button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.about-us .content {
+    max-width: 800px;
+    margin: 1em auto;
+    padding: 20px;
+    text-align: justify;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.about-us h2,
+.about-us h3 {
+    color: #007bff;
+}
+
+.about-us h3 {
+    margin-top: 20px;
+}
+
+.about-us p {
+    line-height: 1.5;
+}
+
+.about-us .return-button {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.about-us .return-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.about-us .return-button a:hover {
+    background-color: #2b81bb;
+}
+
+
