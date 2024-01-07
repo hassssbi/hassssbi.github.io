@@ -80,7 +80,13 @@ button:hover {
 
   button {
     width: 100%;
+    margin-top: 5px;
   }
+}
+
+/* Add space between task buttons and edit form */
+.task form {
+  margin-top: 10px;
 }
 
 /* Additional Styles for Aesthetics */
