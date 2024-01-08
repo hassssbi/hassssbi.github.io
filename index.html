@@ -12,6 +12,38 @@
   </header>
 
   <main>
+    <button id="toggle-color-form">Change Color</button>
+    <div id="color-form" class="hidden">
+      <h2>Change Color</h2>
+      <form id="color-form">
+        <div class="row">
+          <label for="primary-bg-color">Primary Background Color:</label>
+          <input type="color" id="primary-bg-color" value="#ffffff">          
+        </div>
+        <div class="row">
+          <label for="secondary-bg-color">Secondary Background Color:</label>
+          <input type="color" id="secondary-bg-color" value="#f5f5f5">
+        </div>
+        <div class="row">  
+          <label for="text-color">Text Color:</label>
+          <input type="color" id="text-color" value="#333333">
+        </div>
+        <div class="row">
+          <label for="button-bg-color">Button Background Color:</label>
+          <input type="color" id="button-bg-color" value="#333333">
+        </div>
+        <div class="row">
+          <label for="header-color">Header Color:</label>
+          <input type="color" id="header-color" value="#333333">
+        </div>
+        <div class="row">
+          <label for="footer-color">Footer Color:</label>
+          <input type="color" id="footer-color" value="#333333">
+        </div>
+        <button type="submit">Apply Colors</button>
+      </form>
+    </div>
+
     <div id="task-form">
       <h2>Add New Task</h2>
       <form id="add-task-form">

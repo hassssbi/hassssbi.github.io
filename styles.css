@@ -82,6 +82,10 @@ button:hover {
     width: 100%;
     margin-top: 5px;
   }
+
+  #filter-tabs {
+    display: flex;
+  }
 }
 
 /* Add space between task buttons and edit form */
@@ -123,15 +127,12 @@ footer a, .return-button a {
 }
 
 #filter-tabs {
-  /* display: flex; */
   justify-content: space-around;
   margin-bottom: 20px;
 }
 
 .filter-btn {
   padding: 10px;
-  background-color: #333;
-  color: #fff;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -139,4 +140,49 @@ footer a, .return-button a {
 
 .filter-btn:hover {
   background-color: #555;
+}
+
+:root {
+  --header-color: #333333; /* Default header color */
+  --footer-color: #333333; /* Default footer color */
+  --button-bg-color: #333333; /* Default button background color */
+}
+
+body {
+  background-color: var(--primary-bg-color);
+  color: var(--text-color);
+}
+
+header {
+  background-color: var(--header-color);
+}
+
+footer {
+  background-color: var(--footer-color);
+}
+
+main {
+  background-color: var(--secondary-bg-color);
+}
+
+button {
+  background-color: var(--button-bg-color);
+}
+
+#color-form {
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  max-height: 500px; /* Set a max-height for the form to enable smooth transition */
+  overflow: hidden;
+  opacity: 1;
+  margin-top: 1em;
+}
+
+#color-form.hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+input[type=color] {
+  padding: 0;
 }

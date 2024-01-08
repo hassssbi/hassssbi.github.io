@@ -227,4 +227,39 @@ document.addEventListener('DOMContentLoaded', function () {
     function changeTitleFromUI(newTitle) {
         changeAppTitle(newTitle);
     }
+
+    // Function to apply color customization based on user preferences
+    function applyColorCustomization(colorPalette) {
+        document.documentElement.style.setProperty('--primary-bg-color', colorPalette.primaryBgColor);
+        document.documentElement.style.setProperty('--secondary-bg-color', colorPalette.secondaryBgColor);
+        document.documentElement.style.setProperty('--text-color', colorPalette.textColor);
+        document.documentElement.style.setProperty('--button-bg-color', colorPalette.buttonBgColor);
+        document.documentElement.style.setProperty('--header-color', colorPalette.headerColor);
+        document.documentElement.style.setProperty('--footer-color', colorPalette.footerColor);
+    }
+
+    // Event listener for color customization form
+    const colorForm = document.getElementById('color-form');
+    colorForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Get color preferences from the form
+        const colorPalette = {
+            primaryBgColor: document.getElementById('primary-bg-color').value,
+            secondaryBgColor: document.getElementById('secondary-bg-color').value,
+            textColor: document.getElementById('text-color').value,
+            buttonBgColor: document.getElementById('button-bg-color').value,
+            headerColor: document.getElementById('header-color').value,
+            footerColor: document.getElementById('footer-color').value,
+        };
+
+        // Apply color customization
+        applyColorCustomization(colorPalette);
+    });
+
+    // Event listener for toggle button
+    const toggleColorFormBtn = document.getElementById('toggle-color-form');
+    toggleColorFormBtn.addEventListener('click', function () {
+        colorForm.classList.toggle('hidden');
+    });
 });
