@@ -26,9 +26,9 @@
 
         <label for="priority">Priority:</label>
         <select id="priority" required>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
         </select>
 
         <button type="submit">Add Task</button>
@@ -37,6 +37,14 @@
 
     <div id="task-list">
       <h2>Task List</h2>
+      <div id="filter-tabs">
+        <button id="filter-all" class="filter-btn">All</button>
+        <button id="filter-completed" class="filter-btn">Completed</button>
+        <button id="filter-incomplete" class="filter-btn">Incomplete</button>
+        <button id="filter-high" class="filter-btn">High</button>
+        <button id="filter-medium" class="filter-btn">Medium</button>
+        <button id="filter-low" class="filter-btn">Low</button>
+      </div>
       <!-- Task list goes here -->
     </div>
   </main>
