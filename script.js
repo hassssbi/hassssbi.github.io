@@ -234,6 +234,10 @@ document.addEventListener('DOMContentLoaded', function () {
         taskElement.appendChild(editBtn);
         taskElement.appendChild(deleteBtn);
         taskElement.appendChild(completeBtn);
+
+        [editBtn, deleteBtn, completeBtn].forEach(button => {
+            button.style.marginRight = '.75em'; // You can adjust the margin as needed
+        });
     }
 
     function deleteTask(taskElement) {
