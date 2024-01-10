@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function editTask(taskElement, taskDetails) {
         // Check if an edit form is already present
+        console.log(taskElement, taskDetails);
         const existingEditForm = taskElement.querySelector('form');
 
         // If an edit form is present, remove it and return
@@ -208,7 +209,32 @@ document.addEventListener('DOMContentLoaded', function () {
     
         const priorityElement = dueDateElement.nextElementSibling;
         priorityElement.innerHTML = `Priority: <span>${updatedTaskDetails.priority}</span>`;
-    }  
+    
+        // Remove existing buttons to avoid duplicate event listeners
+        const buttons = taskElement.querySelectorAll('button');
+        buttons.forEach(button => button.remove());
+    
+        // Add new buttons with fresh event listeners
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('edit-btn');
+        editBtn.innerText = 'Edit';
+        editBtn.addEventListener('click', () => editTask(taskElement, updatedTaskDetails));
+    
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.addEventListener('click', () => deleteTask(taskElement));
+    
+        const completeBtn = document.createElement('button');
+        completeBtn.classList.add('complete-btn');
+        completeBtn.innerText = 'Complete';
+        completeBtn.addEventListener('click', () => completeTask(taskElement));
+    
+        // Append the new buttons to the task element
+        taskElement.appendChild(editBtn);
+        taskElement.appendChild(deleteBtn);
+        taskElement.appendChild(completeBtn);
+    }
 
     function deleteTask(taskElement) {
         taskElement.remove();
@@ -261,5 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleColorFormBtn = document.getElementById('toggle-color-form');
     toggleColorFormBtn.addEventListener('click', function () {
         colorForm.classList.toggle('hidden');
+        const buttonText = toggleColorFormBtn.textContent;
+        toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customization' : 'Hide Customization';
     });
 });

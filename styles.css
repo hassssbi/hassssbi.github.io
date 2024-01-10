@@ -17,6 +17,7 @@ header, footer {
   text-align: center;
 }
 
+
 main {
   padding: 5em 2.5em;
 }
@@ -85,6 +86,11 @@ button:hover {
 
   #filter-tabs {
     display: flex;
+  }
+
+  form#color-form {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -183,6 +189,67 @@ button {
   overflow: hidden;
 }
 
+form#color-form  {
+  display: block;
+}
+
+#color-form .col {
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .5em;
+
+}
+
 input[type=color] {
   padding: 0;
+  width: 8em
 }
+
+.team-member {
+  padding: 1em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 1em;
+  display: flex;
+  overflow: hidden;
+}
+
+.team-member img {
+  height: auto;
+  width: 20em;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+}
+
+.team-member-desc {
+  background-color: #f5f5f5;
+  padding: 1em;
+  position: relative;
+  flex: 1;
+}
+
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .team-member {
+    flex-direction: column;
+  }
+
+  .team-member img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+
