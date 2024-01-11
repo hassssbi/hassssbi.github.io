@@ -9,15 +9,18 @@
 <body>
   <header>
     <div>
-        <h1 id="app-title" class="editable" contenteditable="true">My Task Manager</h1>
+        <h1 id="app-title" class="editable" contenteditable="true">My Task Manager</h1><br>
+        <small>Just click on the title to edit it!</small>
     </div>
+
     <div id="about-us-link-container">
         <a href="about_us.html"><strong>About Us -> </strong></a>
     </div>
   </header>
 
   <main>
-    <button id="toggle-color-form">Customize</button>
+    <!-- PAGE CUSTOMIZATION -->
+    <button style="float: right;" id="toggle-color-form">Customize Your Page!</button>
     
     <div id="color-form" class="hidden">
       <h2>Change Color</h2>
@@ -48,10 +51,12 @@
             <input type="color" id="footer-color" value="#333333">
           </div>
         </div>
-        <button type="submit">Apply Colors</button>
+        <button type="submit" style="float: right;">Apply Colors</button>
       </form>
     </div>
+    <!-- end of PAGE CUSTOMIZATION -->
 
+    <!-- TASK FORM -->
     <div id="task-form">
       <h2>Add New Task</h2>
       <form id="add-task-form">
@@ -67,10 +72,12 @@
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-        <button type="submit">Add Task</button>
-      </form>
-    </div>
+      </form><br>
+      <button form="add-task-form" style="float: right;" type="submit">Add Task</button>
+    </div><br>
+    <!-- end TASK FORM -->
 
+    <!-- TASK LIST -->
     <div id="task-list">
       <h2>Task List</h2>
       <div id="filter-tabs">
@@ -81,8 +88,9 @@
         <button id="filter-medium" class="filter-btn">Medium</button>
         <button id="filter-low" class="filter-btn">Low</button>
       </div>
-      <!-- Task list goes here -->
+      <!-- New Tasks will be inserted here -->
     </div>
+    <!-- end of TASK LIST -->
     
   </main>
 

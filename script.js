@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskForm = document.getElementById('task-form');
     const taskList = document.getElementById('task-list');
     document.getElementById('due-date').valueAsDate = new Date();
-
     taskForm.addEventListener('submit', addTask);
 
+    //DISPLAY MODAL
     function showModal(message, type = 'info') {
         const modal = document.createElement('div');
         modal.classList.add('modal', type);
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    //ADD NEW TASK
     function addTask(e) {
         e.preventDefault();
         const taskDetails = getTaskDetailsFromForm();
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //CLEAR TASK FORM FIELDS
     function clearTaskForm() {
         document.getElementById('title').value = '';
         document.getElementById('description').value = '';
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('priority').value = 'High';
     }
 
+    //GET TASK DETAILS
     function getTaskDetailsFromForm() {
         const title = document.getElementById('title').value;
         const description = document.getElementById('description').value;
@@ -60,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return { title, description, dueDate, priority };
     }
 
+    // CREATE TASK ELEMENT 
     function createTaskElement(taskDetails) {
         const taskElement = document.createElement('div');
         taskElement.classList.add('task');
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return taskElement;
     }
 
+    // TASK FILTERING
     function filterTasks(filter) {
         const tasks = document.querySelectorAll('.task');
 
@@ -113,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // task filter buttons
     const filterAllBtn = document.getElementById('filter-all');
     const filterCompletedBtn = document.getElementById('filter-completed');
     const filterIncompleteBtn = document.getElementById('filter-incomplete');
@@ -143,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
     filterLowBtn.addEventListener('click', function () {
         filterTasks('low');
     });
-
+    
+    // EDIT EXISTING TASK
     function editTask(taskElement, taskDetails) {
         const existingEditForm = taskElement.querySelector('form');
 
@@ -199,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
         taskElement.appendChild(editForm);
     }
 
+    // UPDATE TASK ELEMENT
     function updateTaskElement(taskElement, updatedTaskDetails) {
         const titleElement = taskElement.querySelector('h3');
         titleElement.innerText = updatedTaskDetails.title;
@@ -239,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // DELETE TASK
     function deleteTask(taskElement) {
         const deleteModal = document.createElement('div');
         deleteModal.classList.add('modal', 'danger');
@@ -265,18 +274,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // MARK TASK AS COMPLETE
     function completeTask(taskElement) {
         taskElement.classList.toggle('completed');
     }
 
+    // CHANGE APPLICATION TITLE
     function changeAppTitle(newTitle) {
         appTitle.textContent = newTitle;
     }
-
     function changeTitleFromUI(newTitle) {
         changeAppTitle(newTitle);
     }
 
+    // PAGE CUSTOMIZATION
     function applyColorCustomization(colorPalette) {
         document.documentElement.style.setProperty('--primary-bg-color', colorPalette.primaryBgColor);
         document.documentElement.style.setProperty('--secondary-bg-color', colorPalette.secondaryBgColor);
@@ -308,6 +319,6 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleColorFormBtn.addEventListener('click', function () {
         colorForm.classList.toggle('hidden');
         const buttonText = toggleColorFormBtn.textContent;
-        toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customization' : 'Hide Customization';
+        toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customize Your Page!' : 'Hide Customization';
     });
 });
