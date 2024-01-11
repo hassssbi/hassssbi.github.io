@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function applyColorCustomization(colorPalette) {
-        document.documentElement.style.setProperty('--primary-bg-color', colorPalette.primaryBgColor);
+        document.documentElement.style.setProperty('--primary-bg-color', colorPalette.secondaryBgColor);
         document.documentElement.style.setProperty('--secondary-bg-color', colorPalette.secondaryBgColor);
         document.documentElement.style.setProperty('--text-color', colorPalette.textColor);
         document.documentElement.style.setProperty('--button-bg-color', colorPalette.buttonBgColor);
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
 
         const colorPalette = {
-            primaryBgColor: document.getElementById('primary-bg-color').value,
+            primaryBgColor: document.getElementById('secondary-bg-color').value,
             secondaryBgColor: document.getElementById('secondary-bg-color').value,
             textColor: document.getElementById('text-color').value,
             buttonBgColor: document.getElementById('button-bg-color').value,

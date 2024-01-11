@@ -112,8 +112,10 @@ button:hover {
 }
 
 .completed {
-  background-color: #e0e0e0;
+  /* background-color: #e0e0e0; */
   text-decoration: line-through;
+  opacity: .8;
+  transition: .2s ease-in all;
 }
 
 @media screen and (max-width: 600px) {
