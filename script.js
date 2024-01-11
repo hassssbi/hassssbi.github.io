@@ -5,6 +5,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     taskForm.addEventListener('submit', addTask);
 
+    function showModal(message, type = 'info') {
+        const modal = document.createElement('div');
+        modal.classList.add('modal', type);
+
+        const modalContent = `
+            <p>${message}</p>
+            <button id="close-modal">Close</button>
+        `;
+        modal.innerHTML = modalContent;
+
+        document.body.appendChild(modal);
+
+        const closeModalBtn = document.getElementById('close-modal');
+        closeModalBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+    }
+
     function addTask(e) {
         e.preventDefault();
         const taskDetails = getTaskDetailsFromForm();
@@ -13,20 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
             const taskElement = createTaskElement(taskDetails);
             taskList.appendChild(taskElement);
 
-            // Clear the form fields manually
             clearTaskForm();
+
+            showModal('Task added successfully!', 'success');
             
-            // Optionally, you can focus on the title field for a better user experience
             document.getElementById('title').focus();
         }
     }
 
-      // Add a new function to clear the task form fields
     function clearTaskForm() {
         document.getElementById('title').value = '';
         document.getElementById('description').value = '';
         document.getElementById('due-date').valueAsDate = new Date();
-        document.getElementById('priority').value = 'High'; // Set default priority
+        document.getElementById('priority').value = 'High';
     }
 
     function getTaskDetailsFromForm() {
@@ -35,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const dueDate = document.getElementById('due-date').value;
         const priority = document.getElementById('priority').value;
 
-        // Simple form validation
         if (!title || !description || !dueDate || !priority) {
             alert('Please fill in all fields');
             return null;
@@ -60,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         taskElement.innerHTML = taskContent;
 
-        // Event listeners for edit, delete, and complete buttons
         const editBtn = taskElement.querySelector('.edit-btn');
         const deleteBtn = taskElement.querySelector('.delete-btn');
         const completeBtn = taskElement.querySelector('.complete-btn');
@@ -72,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return taskElement;
     }
 
-    // Function to filter tasks based on completion status or priority level
     function filterTasks(filter) {
         const tasks = document.querySelectorAll('.task');
 
@@ -99,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add event listeners for filter tabs
     const filterAllBtn = document.getElementById('filter-all');
     const filterCompletedBtn = document.getElementById('filter-completed');
     const filterIncompleteBtn = document.getElementById('filter-incomplete');
@@ -132,52 +145,43 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function editTask(taskElement, taskDetails) {
-        // Check if an edit form is already present
-        console.log(taskElement, taskDetails);
         const existingEditForm = taskElement.querySelector('form');
 
-        // If an edit form is present, remove it and return
         if (existingEditForm) {
             existingEditForm.remove();
             return;
         }
 
-        // Create a form for editing
         const editForm = document.createElement('form');
         editForm.innerHTML = `
-        <label for="edit-title">Title:</label>
-        <input type="text" id="edit-title" value="${taskDetails.title}" required>
+            <label for="edit-title">Title:</label>
+            <input type="text" id="edit-title" value="${taskDetails.title}" required placeholder="What is your task?">
 
-        <label for="edit-description">Description:</label>
-        <textarea id="edit-description" required>${taskDetails.description}</textarea>
+            <label for="edit-description">Description:</label>
+            <textarea id="edit-description" required placeholder="Describe your task...">${taskDetails.description}</textarea>
 
-        <label for="edit-due-date">Due Date:</label>
-        <input type="date" id="edit-due-date" value="${taskDetails.dueDate}" required>
+            <label for="edit-due-date">Due Date:</label>
+            <input type="date" id="edit-due-date" value="${taskDetails.dueDate}" required>
 
-        <label for="edit-priority">Priority:</label>
-        <select id="edit-priority" required>
-            <option value="High" ${taskDetails.priority === 'High' ? 'selected' : ''}>High</option>
-            <option value="Medium" ${taskDetails.priority === 'Medium' ? 'selected' : ''}>Medium</option>
-            <option value="Low" ${taskDetails.priority === 'Low' ? 'selected' : ''}>Low</option>
-        </select>
-        <div>
-            <button type="submit">Save</button>
-            <button type="button" class="cancel-btn">Cancel</button>
-        </div>
+            <label for="edit-priority">Priority:</label>
+            <select id="edit-priority" required>
+                <option value="High" ${taskDetails.priority === 'High' ? 'selected' : ''}>High</option>
+                <option value="Medium" ${taskDetails.priority === 'Medium' ? 'selected' : ''}>Medium</option>
+                <option value="Low" ${taskDetails.priority === 'Low' ? 'selected' : ''}>Low</option>
+            </select>
+            <div>
+                <button type="submit">Save</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+            </div>
         `;
 
-        // Event listener for the cancel button
         const cancelBtn = editForm.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', function () {
-        // Remove the form when the cancel button is clicked
-        editForm.remove();
+            editForm.remove();
         });
 
-        // Submit event for the form
         editForm.addEventListener('submit', function (e) {
             e.preventDefault();
-
-            // Get updated task details
             const updatedTaskDetails = {
                 title: editForm.querySelector('#edit-title').value,
                 description: editForm.querySelector('#edit-description').value,
@@ -185,19 +189,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 priority: editForm.querySelector('#edit-priority').value,
             };
 
-            // Update the task element with the new details
             updateTaskElement(taskElement, updatedTaskDetails);
 
-            // Remove the form after updating
             editForm.remove();
+
+            showModal('Task updated successfully!', 'success');
         });
 
-        // Append the form to the task element
         taskElement.appendChild(editForm);
     }
 
     function updateTaskElement(taskElement, updatedTaskDetails) {
-        // Update the task element with the new details
         const titleElement = taskElement.querySelector('h3');
         titleElement.innerText = updatedTaskDetails.title;
     
@@ -210,11 +212,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const priorityElement = dueDateElement.nextElementSibling;
         priorityElement.innerHTML = `Priority: <span>${updatedTaskDetails.priority}</span>`;
     
-        // Remove existing buttons to avoid duplicate event listeners
         const buttons = taskElement.querySelectorAll('button');
         buttons.forEach(button => button.remove());
     
-        // Add new buttons with fresh event listeners
         const editBtn = document.createElement('button');
         editBtn.classList.add('edit-btn');
         editBtn.innerText = 'Edit';
@@ -230,35 +230,53 @@ document.addEventListener('DOMContentLoaded', function () {
         completeBtn.innerText = 'Complete';
         completeBtn.addEventListener('click', () => completeTask(taskElement));
     
-        // Append the new buttons to the task element
         taskElement.appendChild(editBtn);
         taskElement.appendChild(deleteBtn);
         taskElement.appendChild(completeBtn);
 
         [editBtn, deleteBtn, completeBtn].forEach(button => {
-            button.style.marginRight = '.75em'; // You can adjust the margin as needed
+            button.style.marginRight = '.75em';
         });
     }
 
     function deleteTask(taskElement) {
-        taskElement.remove();
+        const deleteModal = document.createElement('div');
+        deleteModal.classList.add('modal', 'danger');
+    
+        const modalContent = `
+            <p>Are you sure you want to delete this task?</p>
+            <button id="cancel-delete">Cancel</button>
+            <button id="confirm-delete">Confirm</button>
+        `;
+        deleteModal.innerHTML = modalContent;
+    
+        document.body.appendChild(deleteModal);
+    
+        const cancelDeleteBtn = document.getElementById('cancel-delete');
+        cancelDeleteBtn.addEventListener('click', () => {
+            deleteModal.remove();
+        });
+    
+        const confirmDeleteBtn = document.getElementById('confirm-delete');
+        confirmDeleteBtn.addEventListener('click', () => {
+            taskElement.remove();
+            deleteModal.remove();
+            showModal('Task deleted successfully!', 'success');
+        });
     }
 
     function completeTask(taskElement) {
         taskElement.classList.toggle('completed');
     }
 
-    // Function to change the app title
     function changeAppTitle(newTitle) {
         appTitle.textContent = newTitle;
     }
 
-    // Function to change app title from UI element
     function changeTitleFromUI(newTitle) {
         changeAppTitle(newTitle);
     }
 
-    // Function to apply color customization based on user preferences
     function applyColorCustomization(colorPalette) {
         document.documentElement.style.setProperty('--primary-bg-color', colorPalette.primaryBgColor);
         document.documentElement.style.setProperty('--secondary-bg-color', colorPalette.secondaryBgColor);
@@ -268,12 +286,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.documentElement.style.setProperty('--footer-color', colorPalette.footerColor);
     }
 
-    // Event listener for color customization form
     const colorForm = document.getElementById('color-form');
     colorForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get color preferences from the form
         const colorPalette = {
             primaryBgColor: document.getElementById('primary-bg-color').value,
             secondaryBgColor: document.getElementById('secondary-bg-color').value,
@@ -283,11 +299,11 @@ document.addEventListener('DOMContentLoaded', function () {
             footerColor: document.getElementById('footer-color').value,
         };
 
-        // Apply color customization
         applyColorCustomization(colorPalette);
+
+        showModal('Application successfully customized!', 'success');
     });
 
-    // Event listener for toggle button
     const toggleColorFormBtn = document.getElementById('toggle-color-form');
     toggleColorFormBtn.addEventListener('click', function () {
         colorForm.classList.toggle('hidden');

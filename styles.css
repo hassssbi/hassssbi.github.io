@@ -17,6 +17,47 @@ header, footer {
   text-align: center;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header div {
+  flex-grow: 1;
+}
+
+header #about-us-link-container {
+  right: 0;
+  position: absolute;
+}
+
+header #home-container {
+  left: 0;
+  position: absolute;
+  margin-left: 2em;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#app-title {
+  display: inline-block;
+}
+
+#app-title.editable {
+  border-bottom: 2px dashed #ccc;
+}
+
+#about-us-link-container {
+  margin-right: 2em;
+}
+
+#about-us-link:hover {
+  text-decoration: underline;
+}
 
 main {
   padding: 5em 2.5em;
@@ -39,6 +80,7 @@ label {
 input, textarea, select, select option {
   border-radius: 5px;
   padding: 10px;
+  font-family: 'Fira Code', sans-serif;
 }
 
 textarea {
@@ -94,12 +136,10 @@ button:hover {
   }
 }
 
-/* Add space between task buttons and edit form */
 .task form {
   margin-top: 10px;
 }
 
-/* Additional Styles for Aesthetics */
 main {
   background-color: #f4f4f4;
   border-radius: 10px;
@@ -123,7 +163,7 @@ footer {
 }
 
 footer a, .return-button a {
-    color: white; 
+    color: #fff; 
     text-decoration: none;
 }
 
@@ -149,9 +189,9 @@ footer a, .return-button a {
 }
 
 :root {
-  --header-color: #333333; /* Default header color */
-  --footer-color: #333333; /* Default footer color */
-  --button-bg-color: #333333; /* Default button background color */
+  --header-color: #333333;
+  --footer-color: #333333;
+  --button-bg-color: #333333;
 }
 
 body {
@@ -177,7 +217,7 @@ button {
 
 #color-form {
   transition: opacity 0.3s ease, max-height 0.3s ease;
-  max-height: 500px; /* Set a max-height for the form to enable smooth transition */
+  max-height: 500px;
   overflow: hidden;
   opacity: 1;
   margin-top: 1em;
@@ -198,7 +238,6 @@ form#color-form  {
   display: flex;
   justify-content: space-between;
   margin-bottom: .5em;
-
 }
 
 input[type=color] {
@@ -237,7 +276,18 @@ input[type=color] {
   justify-content: center;
 }
 
-/* Media query for responsiveness */
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  max-width: 100%;
+  height: 25em;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 @media (max-width: 768px) {
   .team-member {
     flex-direction: column;
@@ -250,6 +300,88 @@ input[type=color] {
   }
 }
 
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+  text-align: center;
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
+.modal p {
+  margin-bottom: 10px;
+}
 
+.modal.success {
+  background-color: rgba(0, 128, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal.success button {
+  background-color: #fff;
+  color: green;
+  border: 1px solid green;
+  padding: 8px 16px;
+  margin: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal.success button:hover {
+  background-color: green;
+  color: #fff;
+}
+
+.modal.danger {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal.danger button {
+  background-color: #fff;
+  color: red;
+  border: 1px solid red;
+  padding: 8px 16px;
+  margin: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal.danger button:hover {
+  background-color: red;
+  color: #fff;
+}
