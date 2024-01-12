@@ -346,4 +346,64 @@ document.addEventListener('DOMContentLoaded', function () {
         const buttonText = toggleColorFormBtn.textContent;
         toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customize Your Page!' : 'Hide Customization';
     });
+
+    function testAddDummyTask(dummyTask) {
+        // Create a dummy task with legitimate information
+        if(!dummyTask) {
+            dummyTask = {
+                title: 'Dummy Task',
+                description: 'This is a dummy task for testing purposes.',
+                dueDate: '2023-12-31', // Use a valid date format
+                priority: 'Medium', // Choose a priority level
+            };
+        }
+
+        // Create a new task element using the dummy task details
+        const dummyTaskElement = createTaskElement(dummyTask);
+    
+        // Append the dummy task element to the task list
+        const taskList = document.getElementById('task-list');
+        taskList.appendChild(dummyTaskElement);
+    
+        // Optionally, you can trigger the success modal or any other feedback
+        // showModal('Dummy task added for testing!', 'info');
+    };
+
+    dummyTasks = [
+        {
+            title: 'Complete Project Proposal',
+            description: 'Write and finalize the project proposal document.',
+            dueDate: '2023-02-15', // Use a valid date format
+            priority: 'High', // Choose a priority level
+        },
+        {
+            title: 'Review Code Changes',
+            description: 'Review and provide feedback on recent code changes.',
+            dueDate: '2023-02-28', // Use a valid date format
+            priority: 'Medium', // Choose a priority level
+        },
+        {
+            title: 'Client Meeting',
+            description: 'Schedule and prepare for a meeting with the client.',
+            dueDate: '2023-03-05', // Use a valid date format
+            priority: 'High', // Choose a priority level
+        },
+        {
+            title: 'Research New Technologies',
+            description: 'Investigate and document the potential benefits of adopting new technologies.',
+            dueDate: '2023-03-10', // Use a valid date format
+            priority: 'Medium', // Choose a priority level
+        },
+        {
+            title: 'Update User Documentation',
+            description: 'Revise and update the user documentation for the latest software release.',
+            dueDate: '2023-03-15', // Use a valid date format
+            priority: 'Low', // Choose a priority level
+        },
+    ];
+
+    // FOR TESTING, UNCOMMENT TO USE
+    /* for(let i=0; i<dummyTasks.length; i++) {
+        testAddDummyTask(dummyTasks[i]);
+    } */
 });
