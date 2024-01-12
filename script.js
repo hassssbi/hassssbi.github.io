@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleColorFormBtn.addEventListener('click', function () {
         colorForm.classList.toggle('hidden');
         const buttonText = toggleColorFormBtn.textContent;
-        toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customize Your Page!' : 'Hide Customization';
+        toggleColorFormBtn.textContent = buttonText === 'Hide Customization' ? 'Customize Your Page' : 'Hide Customization';
     });
 
     function testAddDummyTask(dummyTask) {
