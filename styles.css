@@ -43,12 +43,18 @@ header a {
   text-decoration: none;
 }
 
+header small {
+  opacity: .3;
+  cursor: default;
+}
+
 #app-title {
   display: inline-block;
 }
 
 #app-title.editable {
   border-bottom: 2px dashed #ccc;
+  cursor: pointer;
 }
 
 #about-us-link-container {
@@ -65,6 +71,31 @@ main {
 
 #task-form, #task-list {
   margin-bottom: 20px;
+}
+
+#task-form .button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#task-form .button button {
+  padding: 8px 24px;
+}
+
+.task form {
+  margin-top: 2em;
+}
+
+.task form .button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+
+.task form .button button {
+  padding: 8px 24px;
 }
 
 form {
@@ -87,7 +118,7 @@ textarea {
   resize: none;
 }
 
-h1 {
+header h1 {
   cursor: default;
 }
 
@@ -112,7 +143,6 @@ button:hover {
 }
 
 .completed {
-  /* background-color: #e0e0e0; */
   text-decoration: line-through;
   opacity: .8;
   transition: .2s ease-in all;
@@ -135,6 +165,10 @@ button:hover {
   form#color-form {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .modal button {
+    margin: 0 0;
   }
 }
 
@@ -349,7 +383,7 @@ input[type=color] {
   color: green;
   border: 1px solid green;
   padding: 8px 16px;
-  margin: 0 8px;
+  margin: 0;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -378,7 +412,7 @@ input[type=color] {
   color: red;
   border: 1px solid red;
   padding: 8px 16px;
-  margin: 0 8px;
+  margin: 0;
   border-radius: 4px;
   cursor: pointer;
 }

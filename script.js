@@ -5,22 +5,44 @@ document.addEventListener('DOMContentLoaded', function () {
     taskForm.addEventListener('submit', addTask);
 
     //DISPLAY MODAL
+    // Array to store references to currently open modals
+    const openModals = [];
+
     function showModal(message, type = 'info') {
+        // Close all open modals before displaying a new one
+        closeOpenModals();
+
         const modal = document.createElement('div');
         modal.classList.add('modal', type);
 
         const modalContent = `
             <p>${message}</p>
-            <button id="close-modal">Close</button>
+            <button class="close-modal">Close</button>
         `;
         modal.innerHTML = modalContent;
 
         document.body.appendChild(modal);
 
-        const closeModalBtn = document.getElementById('close-modal');
+        // Add event listener to close the modal when the close button is clicked
+        const closeModalBtn = modal.querySelector('.close-modal');
         closeModalBtn.addEventListener('click', () => {
             modal.remove();
+            // Remove the closed modal from the openModals array
+            const modalIndex = openModals.indexOf(modal);
+            if (modalIndex !== -1) {
+                openModals.splice(modalIndex, 1);
+            }
         });
+
+        // Add the new modal to the openModals array
+        openModals.push(modal);
+    }
+
+    function closeOpenModals() {
+        // Close all open modals
+        openModals.forEach(modal => modal.remove());
+        // Clear the openModals array
+        openModals.length = 0;
     }
 
     //ADD NEW TASK
@@ -176,7 +198,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <option value="Medium" ${taskDetails.priority === 'Medium' ? 'selected' : ''}>Medium</option>
                 <option value="Low" ${taskDetails.priority === 'Low' ? 'selected' : ''}>Low</option>
             </select>
-            <div>
+            <div></div>
+            <div class="button">
                 <button type="submit">Save</button>
                 <button type="button" class="cancel-btn">Cancel</button>
             </div>
@@ -249,6 +272,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // DELETE TASK
     function deleteTask(taskElement) {
+        // Close all open modals before displaying a new one
+        closeOpenModals();
         const deleteModal = document.createElement('div');
         deleteModal.classList.add('modal', 'danger');
     

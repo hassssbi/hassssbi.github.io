@@ -9,18 +9,17 @@
 <body>
   <header>
     <div>
-        <h1 id="app-title" class="editable" contenteditable="true">My Task Manager</h1><br>
-        <small>Just click on the title to edit it!</small>
+      <h1 id="app-title" class="editable" contenteditable="true">My Task Manager</h1><br>
+      <small>Edit Title</small>
     </div>
-
     <div id="about-us-link-container">
-        <a href="about_us.html"><strong>About Us -> </strong></a>
+      <a href="about_us.html"><strong>About Us -> </strong></a>
     </div>
   </header>
 
   <main>
     <!-- PAGE CUSTOMIZATION -->
-    <button id="toggle-color-form">Customize Your Page!</button>
+    <button id="toggle-color-form">Customize Your Page</button>
     
     <div id="color-form" class="hidden">
       <h2>Change Color</h2>
@@ -47,7 +46,10 @@
             <input type="color" id="footer-color" value="#333333">
           </div>
         </div>
-        <button type="submit" style="float: right;">Apply Colors</button>
+        <div class="col button">
+          <br>
+          <button type="submit">Apply Colors</button>
+        </div>
       </form>
     </div>
     <!-- end of PAGE CUSTOMIZATION -->
@@ -68,8 +70,12 @@
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-      </form><br>
-      <button form="add-task-form" style="float: right;" type="submit">Add Task</button>
+        <div></div>
+        <div class="col button">
+          <button type="submit">Add Task</button>
+        </div>
+      </form>
+
     </div><br>
     <!-- end TASK FORM -->
 
