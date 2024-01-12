@@ -400,10 +400,40 @@ document.addEventListener('DOMContentLoaded', function () {
             dueDate: '2023-03-15', // Use a valid date format
             priority: 'Low', // Choose a priority level
         },
+        {
+            title: 'Create Wireframes for UI Redesign',
+            description: 'Design wireframes for the upcoming user interface redesign.',
+            dueDate: '2023-03-20',
+            priority: 'Medium',
+        },
+        {
+            title: 'Conduct Team Training Session',
+            description: 'Organize and lead a training session for team members on new tools.',
+            dueDate: '2023-03-25',
+            priority: 'High',
+        },
+        {
+            title: 'Prepare Monthly Progress Report',
+            description: 'Compile and summarize the team\'s progress for the monthly report.',
+            dueDate: '2023-04-01',
+            priority: 'Medium',
+        },
+        {
+            title: 'Test and Debug New Features',
+            description: 'Thoroughly test and debug the recently developed features.',
+            dueDate: '2023-04-10',
+            priority: 'High',
+        },
+        {
+            title: 'Brainstorm Ideas for Marketing Campaign',
+            description: 'Collaborate with the marketing team to generate creative ideas for the upcoming campaign.',
+            dueDate: '2023-04-15',
+            priority: 'Low',
+        },
     ];
 
     // FOR TESTING, UNCOMMENT TO USE
-    /* for(let i=0; i<dummyTasks.length; i++) {
+    for(let i=0; i<dummyTasks.length; i++) {
         testAddDummyTask(dummyTasks[i]);
-    } */
+    }
 });
