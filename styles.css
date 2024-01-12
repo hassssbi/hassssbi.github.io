@@ -276,6 +276,16 @@ form#color-form  {
   margin-bottom: .5em;
 }
 
+#color-form .button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#color-form .button button {
+  padding: 8px 15px;
+}
+
 input[type=color] {
   padding: 0;
   width: 8em
@@ -318,11 +328,14 @@ input[type=color] {
 }
 
 .logo img {
-  max-width: 100%;
-  height: 25em;
+  max-width: 100%; /* Ensures the image doesn't exceed its container */
+  max-height: 25em;
+  height: auto;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  object-fit: contain;
 }
+
 
 @media (max-width: 768px) {
   .team-member {
