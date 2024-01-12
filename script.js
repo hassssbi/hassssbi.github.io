@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <h3>${taskDetails.title}</h3>
             <p>${taskDetails.description}</p>
             <p><strong>Due Date: </strong>${taskDetails.dueDate}</p>
-            <p><strong>Priority: </strong><span>${taskDetails.priority}</span></p>
+            <p><strong>Priority: </strong><span class="${taskDetails.priority}">${taskDetails.priority}</span></p>
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
             <button class="complete-btn">Complete</button>
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dueDateElement.innerText = `Due Date: ${updatedTaskDetails.dueDate}`;
     
         const priorityElement = dueDateElement.nextElementSibling;
-        priorityElement.innerHTML = `Priority: <span>${updatedTaskDetails.priority}</span>`;
+        priorityElement.innerHTML = `Priority: <span class="${updatedTaskDetails.priority}">${updatedTaskDetails.priority}</span>`;
     
         const buttons = taskElement.querySelectorAll('button');
         buttons.forEach(button => button.remove());
